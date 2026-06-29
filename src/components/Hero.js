@@ -1,13 +1,16 @@
 import profile from "../assets/Profile.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 function Hero() {
-    const roles = [
-        "Frontend Developer",
-        "React Developer",
-        "JavaScript Developer",
-        "Freelancer"
-      ];
+    const roles = useMemo(
+  () => [
+    "Frontend Developer",
+    "React Developer",
+    "JavaScript Developer",
+    "Freelancer",
+  ],
+  []
+);
       
       const [text, setText] = useState("Frontend Developer");
       const [index, setIndex] = useState(0);
