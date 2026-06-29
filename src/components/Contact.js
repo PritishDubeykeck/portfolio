@@ -78,9 +78,10 @@ function Contact() {
 
             {/* Instagram */}
             <a
-              href="https://instagram.com/"
+              href="https://instagram.com/pritish_dubey"
               target="_blank"
               rel="noreferrer"
+              className="contact-icon"
               title="Instagram"
             >
               <FaInstagram />
