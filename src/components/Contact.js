@@ -1,13 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 import { FaEnvelope, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
 function Contact() {
   const form = useRef();
+  const [status, setStatus] = useState("");
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    setStatus("sending");
 
     emailjs
       .sendForm(
@@ -16,16 +19,23 @@ function Contact() {
         form.current,
         "r6_J_kxJujvMz3V8o",
       )
-      .then(
-        () => {
-          alert("Message sent successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          alert("Failed to send message.");
-          console.log(error.text);
-        },
-      );
+      .then(() => {
+        setStatus("success");
+        form.current.reset();
+
+        setTimeout(() => {
+          setStatus("");
+        }, 3000);
+      })
+      .catch((error) => {
+        console.log(error.text);
+
+        setStatus("error");
+
+        setTimeout(() => {
+          setStatus("");
+        }, 3000);
+      });
   };
   return (
     <section className="contact" id="contact">
@@ -117,6 +127,17 @@ function Contact() {
             ></textarea>
 
             <button type="submit">Send Message →</button>
+            {status === "sending" && (
+              <p className="status sending">Sending message...</p>
+            )}
+
+            {status === "success" && (
+              <p className="status success">Message sent successfully!</p>
+            )}
+
+            {status === "error" && (
+              <p className="status error">Failed to send message.</p>
+            )}
           </form>
         </div>
       </div>

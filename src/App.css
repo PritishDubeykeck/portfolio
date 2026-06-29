@@ -1064,3 +1064,36 @@ width:80%;
 }
 
 }
+
+/* Status Message Styles */
+.status{
+  margin-top:15px;
+  text-align:center;
+  font-size:15px;
+  font-weight:600;
+  animation:fadeIn .35s ease;
+}
+
+.status.sending{
+  color:#38bdf8;
+}
+
+.status.success{
+  color:#22c55e;
+}
+
+.status.error{
+  color:#ef4444;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
